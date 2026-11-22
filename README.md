@@ -32,7 +32,7 @@ File	Contents	When it is saved
 - point_of_sales.csv:	Date, Time, Item, Size, Quantity, Unit Price, Total	When a transaction is finalized
 - sales_log.csv:	The currently filtered Sales Log view	When "Save this view to CSV" is clicked
 
-Upload / Edit / Download loop: download the menu with Download menu.csv, edit it in Excel or Numbers, then load it back with Upload a menu CSV and Load uploaded menu. An uploaded file must have the columns Name, Size, Price and Category.
+Upload / Edit / Download loop: download the menu with Download menu.csv, edit it in Excel or Numbers, then load it back with Upload a menu CSV and Load uploaded menu. 
 
 # How to run:
 From terminal to open jypter and run streamlit:
