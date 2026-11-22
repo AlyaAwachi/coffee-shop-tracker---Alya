@@ -44,12 +44,11 @@ From terminal to open jypter and run streamlit:
 ```
 coffee_shop_tracker/
 ├── coffee_shop_tracker.py    # the whole app
-├── menu.csv                  # saved menu (created automatically)
-├── point_of_sales.csv        # saved transactions (created automatically)
+├── menu.csv                  # saved menu 
+├── point_of_sales.csv        # saved transactions
 ├── README.md
-└── images/
-    ├── coffee.png            # sidebar logo
-    └── aboutus.png           # About Us image
+├── coffee.png            # sidebar logo
+└── aboutus.png           # About Us image
 ```
 
 # How to Use
