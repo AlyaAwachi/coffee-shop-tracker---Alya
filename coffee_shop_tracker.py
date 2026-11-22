@@ -1,14 +1,15 @@
 import streamlit as st # to run the application
-import pandas as pd # 
+import pandas as pd #handles data
 from datetime import datetime # for the current time and date for sales
 
 # First the files are all stored here at the top
+#This is because i do not need to refer to it several times
 MENU_FILE = "menu.csv"
 SALES_FILE = "point_of_sales.csv"
 SALES_LOG_FILE = "sales_log.csv"
 
-
-SET_MENU = {   # here i created set a menu so if something is not in the menu it would show an error 
+#Dictionary (list of pairs)
+SET_MENU = {    
     "Espresso": "Hot Coffee",
     "Americano": "Hot Coffee",
     "Latte": "Hot Coffee",
@@ -28,35 +29,33 @@ SET_MENU = {   # here i created set a menu so if something is not in the menu it
     "Cookie": "Pastry",
     "Cinnamon Roll": "Pastry",
 }
-
+# The allowed sizes and categories
+#tuple
+#Used to ensure the values in the table are valid and to fill the dropdown in the form
 SIZES = ("Small", "Medium", "Large")
 CATEGORIES = ("Hot Coffee", "Iced", "Tea", "Pastry")
 
 
 # this finds the item (drink/pastry) from the set menu 
 #strip() removes spacing 
-#.lower() so i were to write "latte" capital or lower letters would not affect the result
+#.lower() so if i were to write "latte" capital or lower letters would not affect the result
 def find_drink(typed_name):
     for name in SET_MENU:
-        if name.lower() == typed_name.strip().lower():
+        if name.lower() == typed_name.strip().lower(): #checks if it matches what was typed
             return name
     return ""
 
 
 #
-st.set_page_config(page_title="MUGSHOT Café")
+st.set_page_config(page_title="MUGSHOT Café") #text on the browser tab
 
 
-# st.session_state is the app's memory. Normal variables reset on every click, but session state keeps its values.
-#if "menu" not in ... means this only runs the first time, so it doesn't reload the file on every click.
-#try / except tries to read menu.csv. If the file doesn't exist yet, it starts with an empty table that has the right column names.
-#The point_of_sales block does the same for sales.
-#cart is an empty list that holds the current unfinished order
-if "menu" not in st.session_state:
+
+if "menu" not in st.session_state: #session state prevents normal variables from getting wiped each time.
     try:
         st.session_state["menu"] = pd.read_csv(MENU_FILE)
     except FileNotFoundError:
-        st.session_state["menu"] = pd.DataFrame(columns=["Name", "Size", "Price", "Category"])
+        st.session_state["menu"] = pd.DataFrame(columns=["Name", "Size", "Price", "Category"]) #
 
 if "point_of_sales" not in st.session_state:
     try:
@@ -67,7 +66,7 @@ if "point_of_sales" not in st.session_state:
         )
 
 if "cart" not in st.session_state:
-    st.session_state["cart"] = []
+    st.session_state["cart"] = [] #This is an empty list, items go in while a customer orders, and they only become real sales when you click Finalize.
 
 
 with st.sidebar:
@@ -85,8 +84,8 @@ if page_chosen == "Manage Menu":
     st.title("Manage Menu")
     st.write("CHOOSE YOUR DRINK☕️!!!!")
 
-    # show the set menu at the top so I know what names I can type
-    with st.expander("Set Menu (drinks we have)"):
+    # shows the set menu at the top so I know what names I can type
+    with st.expander("Set Menu (items we have)"):
         set_menu_table = pd.DataFrame(list(SET_MENU.items()), columns=["Item", "Category"])
         st.dataframe(set_menu_table, use_container_width=True, hide_index=True)
 
@@ -205,7 +204,7 @@ elif page_chosen == "Point of Sale":
     if menu.empty:
         st.warning("The menu is empty. Add item in Manage Menu first.")
     else:
-        # build the list of options, like "Latte (Medium)"
+        # Build the list of options like "Latte (Medium)"
         options = []
         for i in range(len(menu)):
             options.append(menu.iloc[i]["Name"] + " (" + menu.iloc[i]["Size"] + ")")
