@@ -1,6 +1,9 @@
 # Project-1--Applications: Coffee Shop Tracker
 In this project, I developed a web application using Streamlit to manage and monitor a café’s daily operations. The application was designed to fulfil four key requirements, including managing the drinks and pastry menu, recording point-of-sale transactions, and monitoring daily sales and revenue. Additionally, I incorporated extra features to enhance the application's functionality.
 
+- Deployment App link:
+- Video Demonstration link: 
+
 # Problem Statement
 A local cafe has hired you to build a dual-purpose web system that manages their drink menu and tracks daily point-of-sale transactions and revenue.
 
